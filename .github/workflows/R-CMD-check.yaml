@@ -33,7 +33,7 @@ jobs:
           version: ${{ matrix.julia-version }}
 
       - name: "Install packages"
-        run: julia -p 1 src/install_pkgs.jl
+        run: julia -p 1 src/install_packages.jl
         shell: bash
 
       - name: "Test"
