@@ -201,6 +201,7 @@ function local_min(ts)
 end
 
 
+# Not used but kept as it was used in previous version of the ms
 function bif_analysis(vals, FUN, u0, tspan, ind, pbif = EcoPar())
     nsp = size(u0, 1)
     out_max = fill([], nsp)
@@ -293,9 +294,10 @@ function fig_bif(bif, ind, file, xlab, ylab, ymin, ymax, col = "black", lw = 1.8
 
 end
 
-function barplotmean(bif, ind, file, col = "black")
+function barplotmean(bif, ind, file, ymin, ymax, col = "black")
     figure(figsize = (2.6, 3.8))
     bar(1:3, bif[4][ind, 81][1,:], color = col, align = "center")
+    ylim(ymin, ymax)
     tight_layout()
     savefig(file, dpi = 300)
     plt.close()
