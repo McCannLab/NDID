@@ -36,7 +36,9 @@ using PyPlot
 end
 
 
-### Edible resource
+# I- ODE - Edible resource
+
+## interaction + diffusion 
 function eco_NDCRe!(du, u, p, t)
     @unpack In1, df = p
     #
@@ -56,7 +58,7 @@ function eco_NDCRe!(du, u, p, t)
     return du
 end
 
-# slow hub node (sh)
+## slow hub node (sh)
 function eco_NDCRe_sh!(du, u, p, t)
     @unpack In1, In2, df, df2 = p
     #
@@ -76,6 +78,7 @@ function eco_NDCRe_sh!(du, u, p, t)
     return du
 end
 
+## core ODE 
 function eco_NDCRe_unit!(du, u, p, t)
     # u[1]: Phosphorus; u[2]: Resource; u[3]: Consumer; u[4]: Detritus
     @unpack rn, a1, a23, a2, a42, h42, b1, f, e1, e2, e3, dD, d1, d2 = p
@@ -92,7 +95,7 @@ end
 
 
 
-### Edible and less resource
+# II- ODE - edible and less edible resource
 
 function eco_NDCReRle!(du, u, p, t)
     @unpack In1, df= p;

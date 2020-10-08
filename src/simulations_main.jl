@@ -31,7 +31,6 @@ barplotmean(bife, [4 16 20], "hist_bife_D.svg", 0.170, 0.180, colD)
 
 ### ii- NDCReRle
 param = EcoPar()
-param.In1 = 0.2
 param.a42 = 0.15
 param.a43 = 0.05
 # NB
@@ -90,7 +89,6 @@ barplotmean(bife_sh, [4 16 20], "hist_bife_sh_D.svg", 0.17, 0.18, colD)
 ### ii- NDCReRle
 
 param = EcoPar()
-param.In1 = 0.2
 param.a42 = 0.15
 param.a43 = 0.05
 

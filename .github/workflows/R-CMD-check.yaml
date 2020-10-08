@@ -7,17 +7,15 @@ on:
       - master
 
 
-name: Test
+name: Check
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # julia-version: ['v1.4.0', 'v1.5.0']
         julia-version: ['v1.5.0']
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        # os: [ubuntu-latest]
       max-parallel: 1
 
 
