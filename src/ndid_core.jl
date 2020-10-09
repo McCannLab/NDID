@@ -162,72 +162,8 @@ end
 
 # III- Bifurcation analysis
 
-function local_max(ts)
-    lmaxs = Float64[]
-    for i in 2:(length(ts) - 3)
-        if ts[i - 1] < ts[i] && ts[i] > ts[i + 1]
-            push!(lmaxs, ts[i])
-            # @show ts[i]
-        end
-    end
-
-    if length(lmaxs) == 0
-        push!(lmaxs, ts[length(ts) - 3])
-    end
-
-    return lmaxs
-end
-
-function local_min(ts)
-    lmins = Float64[]
-    for i in 2:(length(ts) - 3)
-        if ts[i - 1] > ts[i] && ts[i] < ts[i + 1]
-            push!(lmins, ts[i])
-            #@show ts[i]
-        end
-    end
-    if length(lmins) == 0
-        push!(lmins, ts[length(ts) - 3])
-    end
-
-    return lmins
-end
-
-
-## NB: not used in final main (see bif_analysis2 instead)
-function bif_analysis(vals, FUN, u0, tspan, ind, pbif = EcoPar())
-    nsp = size(u0, 1)
-    out_max = fill([], nsp)
-    out_min = fill([], nsp)
-    mat_mean = zeros(Float64, nsp, size(vals, 1))
-    mat_cv = zeros(Float64, nsp, size(vals, 1))
-
-    for (i, df) in enumerate(vals)
-        printstyled("rep #", i, "  df=", df, "\n", color = :blue)
-        pbif.df = df
-        prob = ODEProblem(FUN, u0, tspan, pbif)
-        # sol = solve(prob, Trapezoid(), reltol = 1e-16)
-        sol = solve(prob, Rodas4P(), reltol = 1e-16)
-        for k in 1:nsp
-            tmp = local_min(sol(ind)[k, :])
-            for l in tmp
-                push!(out_min[k], [df, l])
-            end
-            #
-            tmp = local_max(sol(ind)[k, :])
-            for l in tmp
-                push!(out_min[k], [df, l])
-            end
-        end
-        tmp = mean(sol(ind), dims = 2)
-        tmp2 = std(sol(ind), dims = 2)
-        mat_mean[:, i] = mean(sol(ind), dims = 2)
-        mat_cv[:, i] = tmp2 ./ tmp
-    end
-
-    return (vals, out_min, out_max, mat_mean, mat_cv)
-end
-
+# we use bif_analysis2 cause bif_analysis was used in a previous version 
+# see SI where it is still used.
 
 function bif_analysis2(vals, FUN, u0, tspan, ind, pbif = EcoPar())
     nsp = size(u0, 1)
