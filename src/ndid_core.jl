@@ -1,10 +1,10 @@
+# -------------- Core functions --------------
+
 # Packages required
 using LinearAlgebra, Parameters, DifferentialEquations, RecursiveArrayTools
 using Statistics: mean, std
 using PyPlot
 
-
-# Core functions
 
 # Reference set of parameters
 @with_kw mutable struct EcoPar
@@ -58,7 +58,7 @@ function eco_NDCRe!(du, u, p, t)
     return du
 end
 
-## slow hub node (sh)
+## interaction + diffusion - slow hub node (sh)
 function eco_NDCRe_sh!(du, u, p, t)
     @unpack In1, In2, df, df2 = p
     #
@@ -97,6 +97,7 @@ end
 
 # II- ODE - edible and less edible resource
 
+## interaction + diffusion
 function eco_NDCReRle!(du, u, p, t)
     @unpack In1, df= p;
     #
@@ -116,7 +117,7 @@ function eco_NDCReRle!(du, u, p, t)
     return du
 end
 
-# slow hub node (sh)
+## interaction + diffusion - slow hub node (sh)
 function eco_NDCReRle_sh!(du, u, p, t)
     @unpack In1, In2, df, df2 = p;
     #
@@ -136,6 +137,7 @@ function eco_NDCReRle_sh!(du, u, p, t)
     return du
 end
 
+## core ODE 
 function eco_NDCReRle_unit!(du, u, p, t)
     # u[1]: Phosphorus; u[2]: Resource; u[3]: Resource less edible;
     # u[4]: Consumer; u[5]: Detritus
@@ -156,21 +158,9 @@ function eco_NDCReRle_unit!(du, u, p, t)
 end
 
 
-function show_results(sol, ind, nsp = 5, nnd = 5)
-
-    nm = ["Nutrients" "Resources" "Resources inedible" "Consumers" "Detritus"]
-
-    for i in 1:nsp
-        printstyled(nm[i], "\n", color = :blue)
-        [@show mean(sol(ind)[k, :]) for k in i:nsp:((nnd - 1)*nsp + i)]
-    end
-
-    return mean(sol(ind), dims = 2)
-end
 
 
-
-## Bifurcation analysis
+# III- Bifurcation analysis
 
 function local_max(ts)
     lmaxs = Float64[]
@@ -204,7 +194,7 @@ function local_min(ts)
 end
 
 
-# Not used but kept as it was used in previous version of the ms
+## NB: not used in final main (see bif_analysis2 instead)
 function bif_analysis(vals, FUN, u0, tspan, ind, pbif = EcoPar())
     nsp = size(u0, 1)
     out_max = fill([], nsp)
@@ -264,6 +254,9 @@ function bif_analysis2(vals, FUN, u0, tspan, ind, pbif = EcoPar())
 end
 
 
+
+# IV- Figures 
+
 function fig_bif(bif, ind, file, xlab, ylab, ymin, ymax, col = "black", lw = 1.8)
     figure(figsize = (2.8, 9))
 
@@ -311,7 +304,7 @@ function fig_bif2(bif, ind, ind2, col, file, xlab, ylab, ymin, ymax)
 
     subplot(311)
     plot(bif[1], bif[4][ind[1], :], color = col[1], linestyle = "-")
-    plot(twinx(), bif[4][ind2[1], :], color = col[2], linestyle = "-")
+    plot(bif[1], bif[4][ind2[1], :], color = col[2], linestyle = "-")
     xlim(0., 1.0)
     ylim(ymin, ymax)
 
@@ -366,4 +359,19 @@ function fig_bif3(bif, ind, col, file, xlab, ylab, ymin, ymax)
     savefig(file, dpi = 300)
     plt.close()
 
+end
+
+
+# V- Print results
+
+function show_results(sol, ind, nsp = 5, nnd = 5)
+
+    nm = ["Nutrients" "Resources" "Resources inedible" "Consumers" "Detritus"]
+
+    for i in 1:nsp
+        printstyled(nm[i], "\n", color = :blue)
+        [@show mean(sol(ind)[k, :]) for k in i:nsp:((nnd - 1)*nsp + i)]
+    end
+
+    return mean(sol(ind), dims = 2)
 end

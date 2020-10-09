@@ -1,4 +1,5 @@
-# Example of simulation
+# -------------- Example of simulation  --------------
+
 include("ndid_core.jl")
 
 # System NCDRe

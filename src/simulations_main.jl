@@ -1,3 +1,5 @@
+# -------------- Main results  --------------
+
 include("ndid_core.jl")
 colC = "black"
 colD = "#c7254e"
@@ -20,13 +22,14 @@ fig_bif(bife, [1 13 17], "figRe_N_30.svg", "df", "N (max/min)", 0, 12.5)
 fig_bif(bife, [2 14 18], "figRe_R_30.svg", "df", "Re (max/min)", 0, 2, colRe, 2)
 fig_bif(bife, [3 15 19], "figRe_C_30.svg", "df", "C (max/min)", 0, 4)
 fig_bif(bife, [4 16 20], "figRe_D_30.svg", "df", "D (max/min)", 0, 2)
-### combining 2 results
+### combining 2 results (not used in the last version of the article)
 fig_bif2(bife, [1 13 17], [3 15 19], [colN colC], "figRe_p1.svg", "", "",  0, 12.5)
 fig_bif2(bife, [1 13 17], [4 16 20], [colN colD], "figRe_p2.svg", "", "",  0, 10.5)
 ### actual results
 fig_bif(bife, [2 14 18], "figRe_Re.svg", "", "", 0, 2, colRe, 3)
 barplotmean(bife, [1 13 17], "hist_bife_N.svg", 0, 11, colN)
 barplotmean(bife, [4 16 20], "hist_bife_D.svg", 0.170, 0.180, colD)
+
 
 
 ### ii- NDCReRle
@@ -46,14 +49,13 @@ fig_bif(bifle, [2 17 22], "figRle_Re.svg", "df", "Re max/min", 0, .6, colRe, 2)
 fig_bif(bifle, [3 18 23], "figRle_Rle.svg", "df", "Rle max/min", 0, 1.5)
 fig_bif(bifle, [4 19 24], "figRle_C.svg", "df", "C max/min", 0, 2)
 fig_bif(bifle, [5 20 25], "figRle_D.svg", "df", "D max/min", 0, 1.5)
-### combining 2 or 3 results
+### combining 2 or 3 results (not used in the last version of the article)
 fig_bif2(bifle, [1 16 21], [5 20 25], [colN colD], "figRle_p2.svg", "", "",  0, 1)
 fig_bif3(bifle, ([2 14 18], [4 16 20], [3 18 23]), [colRe colD colRle], "figRle_p2.svg", "", "Max/min",  0, 1.5)
 ### actual results
 fig_bif(bifle, [2 17 22], "figRle_Re.svg", "", "", 0, .6, colRe, 3)
 barplotmean(bifle, [1 16 21], "hist_bifle_N.svg", 0, .15, colN)
 barplotmean(bifle, [5 20 25], "hist_bifle_D.svg", 0, 1, colD)
-
 
 
 
@@ -71,7 +73,7 @@ bife_sh = bif_analysis2(0.0:0.01:1.0, eco_NDCRe_sh!, fill(0.03, 20),
 
 ### results for all components
 fig_bif(bife_sh, [1 13 17], "figRe_N_sh.svg", "df", "N (max/min)", 0, 20)
-fig_bif(bife_sh, [2 14 18], "figRe_R_sh.svg", "df", "Re (max/min)", 0, .8, 2)
+fig_bif(bife_sh, [2 14 18], "figRe_R_sh.svg", "df", "Re (max/min)", 0, .8)
 fig_bif(bife_sh, [3 15 19], "figRe_C_sh.svg", "df", "C (max/min)", 0, 10)
 fig_bif(bife_sh, [4 16 20], "figRe_D_sh.svg", "df", "D (max/min)", 0, 1)
 

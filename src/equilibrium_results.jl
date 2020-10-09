@@ -1,3 +1,5 @@
+# -------------- Solve equation at equilibrium  --------------
+
 using NLsolve
 
 # I- NCDRe
@@ -29,7 +31,7 @@ initU2 = (d2 + e2)/(f * a32 - a32 * h32 * (d2 + e2))
 
 # function, jacobian (autodiff) and initial guess
 # equilibrium for initial node i
-soli = nlsolve(f!, [ 1.1; initU2; .6; .4], autodiff = :forward)
+soli = nlsolve(f!, [1.1; initU2; .6; .4], autodiff = :forward)
 # check against results in example
 
 # Hub node
@@ -42,7 +44,7 @@ end
 
 # function, jacobian (autodiff) and initial guess
 # equilibrium for initial node i
-solh = nlsolve(fh!, [ 1.1; initU2; .6; .4], autodiff = :forward)
+solh = nlsolve(fh!, [1.1; initU2; .6; .4], autodiff = :forward)
 
 
 function ft!(Ft, ut)

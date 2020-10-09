@@ -1,12 +1,12 @@
-# NDID: Nutrient-Driven Instability at a Distance -- Research compendium
-[![Test](https://github.com/McCannLab/NDID/workflows/Test/badge.svg)](https://github.com/McCannLab/NDID/actions)
+## NDID: Nutrient-Driven Instability at a Distance (research compendium)
+[![Check](https://github.com/McCannLab/NDID/workflows/Check/badge.svg)](https://github.com/McCannLab/NDID/actions)
 
-This repository includes all the code we used in *Landscape Modification and Nutrient-Driven Instability at a Distance* (DOI:XXX, see also the preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
+This repository includes the code we used in *Landscape Modification and Nutrient-Driven Instability at a Distance* (DOI:XXX, see also the preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
 
 
-## Installation
+### Installation
 
-We used [Julia](https://julialang.org/) v.1.5.0 and the following packages:
+We used [Julia](https://julialang.org/) v.1.5.1 with the following packages:
 
 - [LinearAlgebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/)
 - [Statistics](https://docs.julialang.org/en/v1/stdlib/Statistics/)
@@ -19,7 +19,7 @@ We used [Julia](https://julialang.org/) v.1.5.0 and the following packages:
 See `src/install_packages.jl` as well as the [Action](https://github.com/McCannLab/NDID/actions) tab for more details.
 
 
-## Content
+### Content
 
 Briefly:
 
