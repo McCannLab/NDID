@@ -1,4 +1,4 @@
-# -------------- Solve equation at equilibrium  --------------
+# -------------- Solve equation at equilibrium  -------------- 
 
 using NLsolve
 
