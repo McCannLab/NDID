@@ -3,32 +3,32 @@ include("ndid_core_supp.jl")
 function eco_CR!(du, u, p, t)
     @unpack In1, In2, rn, a1, a11, a23, a2, a42, a43, h42, h43, b1, b11, b2, f, e1, e2, e3, dD, df, dc, d1, d11, d2, z1, z2 = p
 
-    du[1] = In1 - rn * u[1] -a1 * u[1] * u[2] / ( b1 + u[1]) - a11 * u[1] * u[3] / ( b11 + u[1]) + dD * u[5] - df * u[1]
+    du[1] = In1 - rn * u[1] -a1 * u[1] * u[2] / (b1 + u[1]) - a11 * u[1] * u[3] / (b11 + u[1]) + dD * u[5] - df * u[1]
     du[2] = f * a1 * u[1] * u[2] / (b1 + u[1]) - a42 * u[2]/u[4]^z2 * u[4] / (1. + a42*h42*u[2]/u[4]^z2 + a43*h43*u[3]/u[4]^z2) - (d1 + e1) * u[2]
     du[3] = f * a11 * u[1] * u[3] / (b11 + u[1]) -  a43 * u[3]/u[4]^z2 * u[4] / (1. + a42*h42*u[2]/u[4]^z2 + a43*h43*u[3]/u[4]^z2) - (d11 + e1) * u[3]
     du[4] = f * a42 * u[2]/u[4]^z2 * u[4] / (1. + a42*h42*u[2]/u[4]^z2 + a43*h43*u[3]/u[4]^z2) +  f * a43 * u[3]/u[4]^z2 * u[4] / (1. + a42*h42*u[2]/u[4]^z2 + a43*h43*u[3]/u[4]^z2) - (d2 + e2) * u[4]^z1
     du[5] = d1 * u[2] + d11 * u[3] + d2 * u[4]^z1 -  (dD + e3) * u[5]
 
-    du[6] = In1 - rn * u[6] -a1 * u[6] * u[7] / ( b1 + u[6]) - a11 * u[6] * u[8] / ( b11 + u[6]) + dD * u[10] - df * u[6]
+    du[6] = In1 - rn * u[6] -a1 * u[6] * u[7] / (b1 + u[6]) - a11 * u[6] * u[8] / (b11 + u[6]) + dD * u[10] - df * u[6]
     du[7] = f * a1 * u[6] * u[7] / (b1 + u[6]) - a42 * u[7]/u[9]^z2 * u[9] / (1. + a42*h42*u[7]/u[9]^z2 + a43*h43*u[8]/u[9]^z2) - (d1 + e1) * u[7]
     du[8] = f * a11 * u[6] * u[8] / (b11 + u[6]) - a43 * u[8]/u[9]^z2 * u[9] / (1. + a42*h42*u[7]/u[9]^z2 + a43*h43*u[8]/u[9]^z2) - (d11 + e1) * u[8]
     du[9] = f * a42 * u[7]/u[9]^z2 * u[9] / (1. + a42*h42*u[7]/u[9]^z2 + a43*h43*u[8]/u[9]^z2) + f * a43 * u[8]/u[9]^z2 * u[9] / (1. + a42*h42*u[7]/u[9]^z2 + a43*h43*u[8]/u[9]^z2) - (d2 + e2) * u[9]^z1
     du[10] = d1 * u[7] + d11 * u[8] + d2 * u[9]^z1 -  (dD + e3) * u[10]
 
-    du[11] = In1 - rn * u[11] -a1 * u[11] * u[12] / ( b1 + u[11]) - a11 * u[11] * u[13] / ( b11 + u[11]) + dD * u[15] - df * u[11]
+    du[11] = In1 - rn * u[11] -a1 * u[11] * u[12] / (b1 + u[11]) - a11 * u[11] * u[13] / (b11 + u[11]) + dD * u[15] - df * u[11]
     du[12] = f * a1 * u[11] * u[12] / (b1 + u[11]) - a42 * u[12]/u[14]^z2 * u[14] / (1. + a42*h42*u[12]/u[14]^z2 + a43*h43*u[13]/u[14]^z2) - (d1 + e1) * u[12]
     du[13] = f * a11 * u[11] * u[13] / (b11 + u[11])  - a43 * u[13]/u[14]^z2 * u[14] / (1. + a42*h42*u[12]/u[14]^z2 + a43*h43*u[13]/u[14]^z2) - (d11 + e1) * u[13]
     du[14] = f * a42 * u[12]/u[14]^z2 * u[14] / (1. + a42*h42*u[12]/u[14]^z2 + a43*h43*u[13]/u[14]^z2) + f * a43 * u[13]/u[14]^z2 * u[14] / (1. + a42*h42*u[12]/u[14]^z2 + a43*h43*u[13]/u[14]^z2) - (d2 + e2) * u[14]^z1
     du[15] = d1 * u[12] + d11 * u[13] + d2 * u[14]^z1 -  (dD + e3) * u[15]
 
 # 3 fold increase in water so divide by 3 to keep density
-    du[16] = In1 - rn * u[16] -a1 * u[16] * u[17] / ( b1 + u[16]) - a11 * u[16] * u[18] / ( b11 + u[16]) + dD * u[20] + df * (u[1] + u[6] + u[11])/3. - df * u[16]
+    du[16] = In1 - rn * u[16] -a1 * u[16] * u[17] / (b1 + u[16]) - a11 * u[16] * u[18] / (b11 + u[16]) + dD * u[20] + df * (u[1] + u[6] + u[11])/3. - df * u[16]
     du[17] = f * a1 * u[16] * u[17] / (b1 + u[16]) - a42 * u[17]/u[19]^z2 * u[19] / (1. + a42*h42*u[17]/u[19]^z2 + a43*h43*u[18]/u[19]^z2) - (d1 + e1) * u[17]
     du[18] = f * a11 * u[16] * u[18] / (b11 + u[16]) - a43 * u[18]/u[19]^z2 * u[19] / (1. + a42*h42*u[17]/u[19]^z2 + a43*h43*u[18]/u[19]^z2) - (d11 + e1) * u[18]
     du[19] = f * a42 * u[17]/u[19]^z2 * u[19] / (1. + a42*h42*u[17]/u[19]^z2 + a43*h43*u[18]/u[19]^z2) + f * a43 * u[18]/u[19]^z2 * u[19] / (1. + a42*h42*u[17]/u[19]^z2 + a43*h43*u[18]/u[19]^z2) - (d2 + e2) * u[19]^z1
     du[20] = d1 * u[17] + d11 * u[18] + d2 * u[19]^z1 -  (dD + e3) * u[20]
 
-    du[21] = In1 - rn * u[21] -a1 * u[21] * u[22] / ( b1 + u[21]) - a11 * u[21] * u[23] / ( b11 + u[21]) + dD * u[25] + df * u[16]
+    du[21] = In1 - rn * u[21] -a1 * u[21] * u[22] / (b1 + u[21]) - a11 * u[21] * u[23] / (b11 + u[21]) + dD * u[25] + df * u[16]
     du[22] = f * a1 * u[21] * u[22] / (b1 + u[21]) - a42 * u[22]/u[24]^z2 * u[24] / (1. + a42*h42*u[22]/u[24]^z2 + a43*h43*u[23]/u[24]^z2) - (d1 + e1) * u[22]
     du[23] = f * a11 * u[21] * u[23] / (b11 + u[21]) - a43 * u[23]/u[24]^z2 * u[24] / (1. + a42*h42*u[22]/u[24]^z2 + a43*h43*u[23]/u[24]^z2) - (d11 + e1) * u[23]
     du[24] = f * a42 * u[22]/u[24]^z2 * u[24] / (1. + a42*h42*u[22]/u[24]^z2 + a43*h43*u[23]/u[24]^z2) + f * a43 * u[23]/u[24]^z2 * u[24] / (1. + a42*h42*u[22]/u[24]^z2 + a43*h43*u[23]/u[24]^z2) - (d2 + e2) * u[24]^z1
@@ -288,21 +288,21 @@ bif = bif_analysis(0.0:0.01:1.0, pbif)
 let
     figure()
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
 
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
@@ -321,21 +321,21 @@ bif = bif_analysis(0.0:0.01:1.0, pbif)
 let
     figure()
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
 
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
@@ -353,21 +353,21 @@ bif = bif_analysis(0.0:0.01:1.0, pbif)
 let
     figure()
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
 
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
@@ -385,21 +385,21 @@ bif = bif_analysis(0.0:0.01:1.0, pbif)
 let
     figure()
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
 
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
@@ -418,21 +418,21 @@ bif = bif_analysis(0.0:0.01:1.0, pbif)
 let
     figure()
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,1.0)
     ylim(0.0,1.0)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
 
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
