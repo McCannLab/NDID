@@ -3,9 +3,6 @@ include("ndid_core_supp.jl")
 function eco_CR!(du, u, p, t)
     @unpack In1, In2, rn, a1, a11, a23, a2, a42, a43, h42, h43, b1, b11, b2, f, e1, e2, e3, dD, df, dc, d1, d11, d2 = p
 
-    # I have started making sure things do not shoot through zeroes numerically, this is a numerical error but there
-    # might be a better way of doing this and it is not working the way I want yet.
-
     du[1] = In1 - rn * u[1] -a1 * u[1] * u[2] / ( b1 + u[1]) - a11 * u[1] * u[3] / ( b11 + u[1]) + dD * u[5]
     du[2] = f * a1 * u[1] * u[2] / (b1 + u[1]) - a42 * u[2] * u[4] / (1. + a42*h42*u[2]+a43*h43*u[3]) - (d1 + e1) * u[2]
     du[3] = f * a11 * u[1] * u[3] / (b11 + u[1]) -  a43 * u[3] * u[4] / (1. + a42*h42*u[2]+a43*h43*u[3]) - (d11 + e1) * u[3]
@@ -51,21 +48,20 @@ end
     e3 = 0.05
     a1 = 0.6
     a11 = 0.55
-    a23 = .07
+    a23 = 0.07
     a2 = 0.25
     h42=.0005
     h43=.005
     b1 = 0.040
     b11 = 0.043
     b2 = 0.040
-    a42=.350
-    a43=.05
+    a42 = 0.350
+    a43 = 0.05
     dD = 0.1
     dfd = 0.0
     dcd = 0.0
     d1 = 0.10
     d11 = 0.11
-    noise = 0.0
     df2 = 0.001
     df = 0.2
     dc = 0.01
@@ -128,9 +124,8 @@ plot(sol.t, sol[23, :])
 function bif_analysis(vals)
     tspan = (0.0, 10000.0)
     u0 = fill(0.03, 25)
-# inedibles non-zero
+    # inedibles non-zero
 
-    # make a local set of parameters
     pbif = EcoPar()
 
     apoints3 = []
@@ -262,7 +257,7 @@ function bif_analysis(vals)
 end
 
 
-# Fig. S5 B ii
+# Fig.S.5.B.ii (model 2)
 
 bif = bif_analysis(0.0:0.001:.10)
 
@@ -270,27 +265,26 @@ let
     figure()
 
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,.05)
     ylim(0.0,0.2)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,.05)
     ylim(0.0,0.2)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
     xlim(0.0,.05)
     ylim(0.0,0.2)
 
-    # it is good to call this to get all the layout nice
     tight_layout()
 
 end

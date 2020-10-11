@@ -3,9 +3,6 @@ include("ndid_core_supp.jl")
 function eco_CR!(du, u, p, t)
     @unpack In1, In2, rn, a1, a11, a23, a2, a32, h32, b1, b11, b2, f, e1, e2, e3, dD, df, dc, d1, d11, d2 = p
 
-    # I have started making sure things do not shoot through zeroes numerically, this is a numerical error but there
-    # might be a better way of doing this and it is not working the way I want yet.
-
     du[1] = In1 - rn * u[1] -a1 * u[1] * u[2] / ( b1 + u[1]) + dD * u[4]
     du[2] = f * a1 * u[1] * u[2] / (b1 + u[1]) - a32 * u[2] * u[3] / (1. + a32 * h32 * u[2]) - (d1 + e1) * u[2]
     du[3] = f * a32 * u[2] * u[3] / (1. + a32 * h32 * u[2]) - (d2 + e2) * u[3] - dc * u[3]
@@ -45,22 +42,20 @@ end
     e3 = 0.05
     a1 = 0.6
     a11 = 0.4
-    a23 = .07
+    a23 = 0.07
     a2 = 0.25
-    h32=.005
+    h32 = 0.005
     b1 = 0.040
     b11 = 0.047
     b2 = 0.040
-    a32=.20
+    a32 = 0.20
     dD = 0.1
     dfd = 0.0
     dcd = 0.0
     d1 = 0.10
     d11 = 0.11
-    noise = 0.0
     df2 = 0.00
     df = 0.0
-# dc not working yet
     dc = 0.06
     d2 = 0.001
 end
@@ -109,7 +104,6 @@ plot(sol.t, sol.u)
 @show sol[20, end]
 
 plot(sol.t, sol[17, :])
-
 
 
 function bif_analysis(vals)
@@ -189,11 +183,11 @@ function bif_analysis(vals)
         @show dc
     end
 
-    return VectorOfArray(apoints2),VectorOfArray(apoints14),VectorOfArray(apoints18)
+    return VectorOfArray(apoints2), VectorOfArray(apoints14), VectorOfArray(apoints18)
 end
 
 
-# Fig.S5 B i 
+# Fig.S.5.B.i (model 1)
 
 bif = bif_analysis(0.0:0.001:.10)
 
@@ -202,25 +196,25 @@ let
     figure()
 
     subplot(131)
-    plot(bif[1][1, :], bif[1][2, :], "ko",markersize = 1.4,color = "black")
+    plot(bif[1][1, :], bif[1][2, :], "ko", markersize = 1.4,color = "black")
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
-    xlim(0.0,0.10)
-    ylim(0.0,0.8)
+    xlim(0.0, 0.10)
+    ylim(0.0, 0.8)
 
     subplot(132)
-    plot(bif[2][1, :], bif[2][2, :], "ko",markersize = 1.4)
+    plot(bif[2][1, :], bif[2][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
-    xlim(0.0,0.10)
-    ylim(0.0,0.8)
+    xlim(0.0, 0.10)
+    ylim(0.0, 0.8)
 
     subplot(133)
-    plot(bif[3][1, :], bif[3][2, :], "ko",markersize = 1.4)
+    plot(bif[3][1, :], bif[3][2, :], "ko", markersize = 1.4)
     xlabel("df", fontname = "Times New Roman", fontsize = 12)
     ylabel("Max & Min R")
-    xlim(0.0,0.1)
-    ylim(0.0,0.8)
+    xlim(0.0, 0.1)
+    ylim(0.0, 0.8)
 
     tight_layout()
 
