@@ -1,7 +1,14 @@
 ## NDID: Nutrient-Driven Instability at a Distance (research compendium)
 [![Check](https://github.com/McCannLab/NDID/workflows/Check/badge.svg)](https://github.com/McCannLab/NDID/actions)
+[![DOI](https://zenodo.org/badge/287106212.svg)](https://zenodo.org/badge/latestdoi/287106212)
 
-This repository includes the code we used in *Landscape Modification and Nutrient-Driven Instability at a Distance* (DOI:XXX, see also the preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
+
+
+
+This repository includes the code we used in *Landscape Modification and Nutrient- Driven Instability at a Distance*: 
+
+- *accepted in Ecology Letters* (DOI: TBD),
+- preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
 
 
 ### Installation
