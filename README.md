@@ -16,12 +16,12 @@ We used [Julia](https://julialang.org/) v.1.5.1 with the following packages:
 - [DifferentialEquations](https://github.com/SciML/DifferentialEquations.jl)
 - [PyPlot](https://github.com/JuliaPy/PyPlot.jl)
 
-See `src/install_packages.jl` as well as the [Action](https://github.com/McCannLab/NDID/actions) tab for more details.
+See `src/install_packages.jl` as well as the [Actions](https://github.com/McCannLab/NDID/actions) tab for more details.
 
 
 ### Content
 
-Briefly:
+Briefly, this repository includes:
 
 - `src/ndid_core.jl`: includes all core functions:
     - functions that encode the systems of differential equations,
@@ -29,4 +29,21 @@ Briefly:
     - figures
 - `src/simulation_example.jl`: includes one example of a simulation (i.e., solving the differential equations for a given time span) for both systems,
 - `src/simulations_main.jl`: includes the bifurcation analyses as presented in the main text,
-- `equilibrium_results.jl`: uses the NLsolve packages to compute the equilibrium for both systems studied.
+- `src/equilibrium_results.jl`: uses the NLsolve packages to compute the equilibrium for both systems studied.
+- `src/sup/`: includes all Julia files to reproduce supplementary figures. 
+
+
+### Running the analysis 
+
+For the main analysis, you can either run the code in `simulation_main.jl` line by line in an interactive session, or you can run it as a script: 
+
+```sh
+julia src/simulations_main.jl
+```
+
+See also [Actions](https://github.com/McCannLab/NDID/actions) tab. Note that all files in `scr/sup` can be run independently. 
+
+
+## Troubleshooting
+
+Please use the [issue feature](https://github.com/McCannLab/NDID/issues) if you encounter any difficulty while trying to reproduce the analysis. 
