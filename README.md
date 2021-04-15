@@ -3,11 +3,9 @@
 [![DOI](https://zenodo.org/badge/287106212.svg)](https://zenodo.org/badge/latestdoi/287106212)
 
 
-
-
 This repository includes the code we used in *Landscape Modification and Nutrient- Driven Instability at a Distance*: 
 
-- *accepted in Ecology Letters* (DOI: TBD),
+- Ecology Letters paper (DOI: [10.1111/ele.13644](https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.13644)]
 - preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
 
 
