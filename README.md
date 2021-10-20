@@ -5,8 +5,8 @@
 
 This repository includes the code we used in *Landscape Modification and Nutrient- Driven Instability at a Distance*: 
 
-- Ecology Letters paper (DOI: [10.1111/ele.13644](https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.13644)]
-- preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
+- Ecology Letters paper (DOI: [10.1111/ele.13644](https://onlinelibrary.wiley.com/doi/abs/10.1111/ele.13644))
+- Preprint [DOI: 10.1101/2020.04.20.050302 *](https://doi.org/10.1101/2020.04.20.050302)).
 
 
 ### Installation
